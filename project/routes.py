@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, flash
 from flask_login import login_user, logout_user, login_required
 
+import project
 from project import app, db
 from project.models import *
 
@@ -65,3 +66,23 @@ def registration():
 
         print(username, password)
         return render_template('register.html')
+
+
+@app.route("/admin", methods=['GET'], defaults={'model_name': None})
+@app.route("/admin/<model_name>", methods=['GET'])
+# @login_required
+def admin(model_name):
+    if model_name is None:
+        return render_template('admin.html',
+                               users=User.__tablename__,
+                               readers=Reader.__tablename__,
+                               book_cards=BookCard.__tablename__,
+                               reader_bookcard=Reader_BookCard.__tablename__)
+    else:
+        # ищем модель по названию таблицы
+        for model in dir(project.models):
+            cls = getattr(project.models, model)
+            if cls.__tablename__ == model_name:
+                return render_template('model_content.html', content=cls().query.all())
+
+        return f'<h1>Таблица {model_name} не найдена</h1>'
