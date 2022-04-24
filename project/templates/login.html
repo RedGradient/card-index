@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block title %}Вход{% endblock %}
+{% block content %}
 
-    <link rel="stylesheet" href="../static/style.css">
-    <title>Войти</title>
-    
-</head>
-<body>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul class=flashes>
@@ -20,19 +12,14 @@
       {% endif %}
     {% endwith %}
 
-    <div class="container-center">
+    <form method="post">
+        <label for="username">Имя пользователя</label>
+        <input type="text" name="username" id="username">
 
-        <form method="post" onsubmit="validate()" class="form">
-            <label for="username">Имя пользователя</label>
-            <input type="text" name="username" id="username">
+        <label for="password">Пароль</label>
+        <input type="password" name="password" id="password">
 
-            <label for="password">Пароль</label>
-            <input type="password" name="password" id="password">
+        <input type="submit" value="Войти">
+    </form>
 
-            <input type="submit" value="Войти">
-        </form>
-        
-    </div>
-
-</body>
-</html>
+{% endblock %}
