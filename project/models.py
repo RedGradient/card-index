@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     is_staff = db.Column(db.Boolean, default=False)
 
+    # метод __repr__ возвращает строковое представление экземпляра User'a
+    # строковые представления используются в админ-панели, чтобы выводить читабельные наименования
     def __repr__(self):
         return f'{self.username}'
 

@@ -22,25 +22,19 @@
       {% endif %}
     {% endwith %}
 
-    <div class="container-center">
+    <div class="container">
+        <form method="post" onsubmit="validate()" class="col-lg-6 offset-lg-3">
+            <div class="row justify-content-center">
+                <input type="text" name="username" id="username" placeholder="Имя пользователя">
+                <input type="email" name="email" id="email" placeholder="E-mail">
+                <input type="password" name="password" id="password" placeholder="Пароль">
+                <input type="password" name="password2" id="password2" placeholder="Повторите пароль">
 
-        <form method="post" onsubmit="validate()" class="form">
-            <label for="username">Имя пользователя</label>
-            <input type="text" name="username" id="username">
-
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email">
-
-            <label for="password">Пароль</label>
-            <input type="password" name="password" id="password">
-
-            <label for="password2">Пароль</label>
-            <input type="password" name="password2" id="password2">
-
-            <input type="submit" value="Регистрация">
+                <input type="submit" class="btn btn-primary" value="Регистрация">
+            </div>
         </form>
-        
     </div>
+
 
 </body>
 </html>

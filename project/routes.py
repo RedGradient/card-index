@@ -69,44 +69,6 @@ def register():
         return render_template('register.html')
 
 
-# @app.route("/admin", methods=['GET'])
-# # @login_required
-# def admin_main():
-#     return render_template('admin.html',
-#                            users=User.__tablename__,
-#                            readers=Reader.__tablename__,
-#                            book_cards=BookCard.__tablename__,
-#                            reader_bookcard=Reader_BookCard.__tablename__)
-#
-#
-# @app.route("/admin/<model_name>", methods=['GET'])
-# # @login_required
-# def admin_model(model_name):
-#     # класс модели
-#     model_cls = get_model_by_name(model_name)
-#     from pprint import pprint
-#     pprint(dir(model_cls))
-#
-#     # извлекаем из объектов столбцов их строковое представление, например id, username и т.д.
-#     columns_raw = model_cls.__table__.columns
-#     columns = []
-#     for c in columns_raw:
-#         string_representation = str(c)
-#         columns.append(string_representation.split('.')[1])
-#
-#     # содержимое таблицы
-#     content = model_cls().query.all()
-#     if model_cls is not None:
-#         return render_template('model_content.html', columns=columns, content=content)
-#
-#     return f'<h1>Таблица {model_name} не найдена</h1>'
-#
-#
-# @app.route("/admin/<model_name>/<object_id>")
-# def admin_model_entry(model_name, object_id):
-#     pass
-
-
 def get_model_by_name(model_name):
     # ищем класс модели по имени таблицы
     for model in dir(project.models):
