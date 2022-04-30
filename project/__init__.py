@@ -1,9 +1,11 @@
 from flask import Flask
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_perm import Perm
+
 
 
 # устанавливаем переменные окружения, чтобы запустить сервер в development режиме
@@ -29,6 +31,15 @@ from project.models import *
 
 # создаем админ-панель
 admin = Admin(app)
+
+# добавляем поддержку прав доступа
+perm = Perm(app)
+
+
+# регистрируем загрузчик пользователя (необходимо для работы Flask-Perm)
+@perm.current_user_loader
+def load_current_user():
+    return current_user
 
 
 class MyModelView(ModelView):

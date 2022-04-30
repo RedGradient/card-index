@@ -17,10 +17,12 @@
         <ul class="nav me-auto">
             <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Главная</a></li>
             <li class="nav-item"><a href="/books" class="nav-link link-dark px-2 active" aria-current="page">Каталог книг</a></li>
-            <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2">Панель управления</a></li>
+            {% if current_user.is_authenticated %}
+                <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2">Панель управления</a></li>
+            {% endif %}
         </ul>
         <ul class="nav">
-            <li class="nav-item">
+            <li class="nav-item me-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Название книги" id="search"
                            aria-label="Book title" aria-describedby="basic-addon2">
@@ -29,8 +31,12 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item"><a href="/login" class="nav-link link-dark px-2">Вход для сотрудников</a></li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item"><a href="/logout" class="nav-link link-dark px-2">Выход</a></li>
+            {% else %}
+            <li class="nav-item"><a href="/login" class="nav-link link-dark px-2">Вход</a></li>
             <li class="nav-item"><a href="/register" class="nav-link link-dark px-2">Регистрация</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>

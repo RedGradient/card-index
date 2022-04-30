@@ -82,5 +82,4 @@ def books():
         return render_template('books.html', books=_books)
 
 
-# TODO: поиск по книгам
 # todo: ЛИЧНЫЙ КАБИНЕТ
