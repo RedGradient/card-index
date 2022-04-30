@@ -30,12 +30,18 @@ from project.models import *
 # создаем админ-панель
 admin = Admin(app)
 
+
+class MyModelView(ModelView):
+    # поле time_created не будет показываться в админ-панели
+    form_excluded_columns = ('time_created',)
+
+
 # добавляем наши модели в админ-панель
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Reader, db.session))
-admin.add_view(ModelView(BookCard, db.session))
-admin.add_view(ModelView(ReadersBookCards, db.session))
-admin.add_view(ModelView(Post, db.session))
+admin.add_view(MyModelView(User, db.session))
+admin.add_view(MyModelView(Reader, db.session))
+admin.add_view(MyModelView(BookCard, db.session))
+admin.add_view(MyModelView(ReadersBookCards, db.session))
+admin.add_view(MyModelView(Post, db.session))
 
 # создаем базу данных, если ее нет
 db.create_all()

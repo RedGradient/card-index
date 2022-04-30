@@ -69,10 +69,18 @@ def register():
         return render_template('register.html')
 
 
-def get_model_by_name(model_name):
-    # ищем класс модели по имени таблицы
-    for model in dir(project.models):
-        obj = getattr(project.models, model)
-        if isinstance(obj, DefaultMeta) and obj.__tablename__ == model_name:
-            return obj
-    return None
+@app.route("/books", methods=['GET'])
+def books():
+    print(len(request.args))
+    if len(request.args) > 0:
+        title = request.args.get('title')
+        if title is not None:
+            _books = BookCard.query.filter_by(title=title)
+            return render_template('books.html', books=_books)
+    else:
+        _books = BookCard.query.all()
+        return render_template('books.html', books=_books)
+
+
+# TODO: поиск по книгам
+# todo: ЛИЧНЫЙ КАБИНЕТ

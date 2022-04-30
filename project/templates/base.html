@@ -6,32 +6,40 @@
     <link rel="stylesheet" href="../static/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/bootstrap-5.1.3-dist/css/bootstrap-theme.min.css">
     <script src="../static/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+    <script src="../static/js/base.js"></script>
     {% block static %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    {% block header %}
-    <nav class="py-2 bg-light border-bottom">
-        <div class="container d-flex flex-wrap">
-          <ul class="nav me-auto">
+{% block header %}
+<nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
             <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Главная</a></li>
+            <li class="nav-item"><a href="/books" class="nav-link link-dark px-2 active" aria-current="page">Каталог книг</a></li>
             <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2">Панель управления</a></li>
-<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>-->
-<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>-->
-<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>-->
-          </ul>
-          <ul class="nav">
+        </ul>
+        <ul class="nav">
+            <li class="nav-item">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Название книги" id="search"
+                           aria-label="Book title" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="search()">Искать</button>
+                    </div>
+                </div>
+            </li>
             <li class="nav-item"><a href="/login" class="nav-link link-dark px-2">Вход для сотрудников</a></li>
             <li class="nav-item"><a href="/register" class="nav-link link-dark px-2">Регистрация</a></li>
-          </ul>
-        </div>
-    </nav>
-    {% endblock %}
-
-    <div class="container">
-        {% block content %}{% endblock %}
+        </ul>
     </div>
+</nav>
+{% endblock %}
 
-    {% block freespace %}{% endblock %}
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+{% block freespace %}{% endblock %}
 </body>
 </html>

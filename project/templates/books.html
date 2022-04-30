@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Каталог{% endblock %}
+{% block content %}
+<h1>Каталог</h1>
+
+{% for book in books %}
+    <div class="card">
+        <div class="card-body">
+            {{ book }}
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
