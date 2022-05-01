@@ -44,5 +44,20 @@
     </button>
 </div>
 
+<h3 class="mt-4 mb-4">События</h3>
+
+{% for post in posts %}
+<div class="card mb-4 text-bold">
+    <div class="card-body">
+        <div class="card-title">
+            <h5>{{ post.title }}</h5>
+        </div>
+        {{ post.body }}
+    </div>
+</div>
+
+
+{% endfor %}
+
 
 {% endblock %}
