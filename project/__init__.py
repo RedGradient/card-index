@@ -6,6 +6,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_perm import Perm
 from flask_migrate import Migrate
+from flask_admin.menu import MenuLink
 
 
 # устанавливаем переменные окружения, чтобы запустить сервер в development режиме
@@ -43,6 +44,9 @@ from project.models import *
 
 # создаем админ-панель
 admin = Admin(app)
+
+# для удобства добавляем в админ-панель ссылку на главную страницу
+admin.add_link(MenuLink(name='Вернуться на главную страницу', url='/'))
 
 # добавляем поддержку прав доступа
 perm = Perm(app)
