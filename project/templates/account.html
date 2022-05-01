@@ -2,6 +2,14 @@
 {% block title %}Личный кабинет{% endblock %}
 {% block content %}
 
-<p>{{ current_user }}</p>
+<p class="mt-4">Здравствуйте, {{ current_user }}</p>
+
+{% if reader is not none %}
+    {% for book in books %}
+        <p>{{ book }}</p>
+    {% endfor %}
+{% else %}
+    <p>У вас пока нет карточки читателя. Чтобы ее получить, обратитесь в библиотеку</p>
+{% endif %}
 
 {% endblock %}

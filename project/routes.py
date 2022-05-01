@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, flash
 from flask_login import login_user, logout_user, login_required
 from flask_sqlalchemy.model import DefaultMeta
+from flask_login import current_user
 
 import project
 from project import app, db
@@ -26,8 +27,13 @@ def search():
 
 @app.route("/account")
 def account():
-
-    return render_template("account.html")
+    # проверяем, есть ли у юзера ассоциированная с ним карточка читателя
+    user_id = current_user.id
+    reader = Reader.query.filter_by(user_id=user_id).first()
+    if reader is not None:
+        reader_books = BookCard.query.filter_by(reader_id=reader.id)
+        return render_template("account.html", reader=reader, books=reader_books)
+    return render_template("account.html", reader=reader)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -95,4 +101,3 @@ def books():
 
 # todo: ЛИЧНЫЙ КАБИНЕТ
 # todo: добавить ссылку на дом. страницу в админ-панель
-# todo: создание суперюзера в консоли

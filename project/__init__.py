@@ -8,7 +8,6 @@ from flask_perm import Perm
 from flask_migrate import Migrate
 
 
-
 # устанавливаем переменные окружения, чтобы запустить сервер в development режиме
 os.environ['FLASK_APP'] = 'main'
 os.environ['FLASK_ENV'] = 'development'
@@ -69,3 +68,10 @@ admin.add_view(MyModelView(Post, db.session))
 
 # создаем базу данных, если ее нет
 db.create_all()
+
+# создаем суперпользователя, если его нет
+staff = User.query.filter_by(is_staff=True)
+if len(list(staff)) == 0:
+    superuser = User(username='admin', password='admin', email='example@mail.com', is_staff=True)
+    db.session.add(superuser)
+    db.session.commit()
