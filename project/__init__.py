@@ -5,6 +5,7 @@ import os
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_perm import Perm
+from flask_migrate import Migrate
 
 
 
@@ -23,6 +24,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{parent}/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # подавление предупреждения в консоли
 
 db = SQLAlchemy(app)  # объект базы данных
+
+"""
+Миграции позволяют добавлять новые столбцы и таблицы в базу данных, не пересоздавая ее заново.
+Использование:
+Инициализация репозитория (выполняется один раз):
+    python3 -m flask db init
+После каждого изменения базы данных нужно выполнить команды:
+    python3 -m flask db migrate -m "Initial migration."
+    python3 -m flask db upgrade
+"""
+migrate = Migrate(app, db)
+
 login_manager = LoginManager(app)
 
 

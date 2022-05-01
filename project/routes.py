@@ -26,6 +26,7 @@ def search():
 
 @app.route("/account")
 def account():
+
     return render_template("account.html")
 
 

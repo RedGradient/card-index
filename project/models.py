@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
 
 class Reader(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user = db.relationship('User')
     schoolyear = db.Column(db.Integer)
     firstname = db.Column(db.String(120), nullable=False)
     lastname = db.Column(db.String(120), nullable=False)
