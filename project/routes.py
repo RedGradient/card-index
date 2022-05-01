@@ -13,6 +13,17 @@ def home():
     return render_template('index.html', posts=posts)
 
 
+@app.route("/search")
+def search():
+    if len(request.args) > 0:
+        title = request.args.get('title')
+        if title is not None:
+            _books = BookCard.query.filter_by(title=title)
+            return render_template('search_results.html', books=_books)
+    else:
+        return redirect("/")
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -72,15 +83,8 @@ def register():
 
 @app.route("/books", methods=['GET'])
 def books():
-    print(len(request.args))
-    if len(request.args) > 0:
-        title = request.args.get('title')
-        if title is not None:
-            _books = BookCard.query.filter_by(title=title)
-            return render_template('books.html', books=_books)
-    else:
-        _books = BookCard.query.all()
-        return render_template('books.html', books=_books)
+    _books = BookCard.query.all()
+    return render_template('books.html', books=_books)
 
 
 # todo: ЛИЧНЫЙ КАБИНЕТ

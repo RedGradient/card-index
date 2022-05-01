@@ -3,5 +3,5 @@ function search() {
     let title = search_input.value
 
     let host = window.location.host
-    window.location = 'books?title=' + title
+    window.location = 'search?title=' + title
 }

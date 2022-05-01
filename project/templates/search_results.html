@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Поиск{% endblock %}
+{% block content %}
+
+<h3 class="mt-4 mb-4">Результаты поиска</h3>
+
+{% for book in books %}
+    <div class="card mb-4">
+        <div class="card-body">
+            {{ book }}
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
