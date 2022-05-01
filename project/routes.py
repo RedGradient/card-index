@@ -24,6 +24,11 @@ def search():
         return redirect("/")
 
 
+@app.route("/account")
+def account():
+    return render_template("account.html")
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
