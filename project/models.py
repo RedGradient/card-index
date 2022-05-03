@@ -51,6 +51,7 @@ class ReadersBookCards(db.Model):
     reader = db.relationship('Reader')
     bookcard_id = db.Column(db.Integer, db.ForeignKey('book_card.id'), nullable=False)
     bookcard = db.relationship('BookCard')
+    deadline = db.Column(db.Date(), nullable=False)
     time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):

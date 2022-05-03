@@ -2,15 +2,18 @@
 {% block title %}Личный кабинет{% endblock %}
 {% block content %}
 
-<p class="mt-4">Здравствуйте, {{ current_user }}</p>
 
 {% if reader is not none %}
-    {% if books|length > 0 %}
-        <p>Список ваших книг</p>
-        {% for book in books %}
-            <p>{{ book }}</p>
+    {% if books_deadlines|length > 0 %}
+        <h3 class="mt-4 mb-4">Список ваших книг</h3>
+        {% for item in books_deadlines.items() %}
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">{{ item[0] }}</p>
+                    <span class="text-secondary">До {{ item[1] }}</span>
+                </div>
+            </div>
         {% endfor %}
-
     {% endif %}
 
 {% else %}

@@ -32,11 +32,10 @@ def account():
     reader = Reader.query.filter_by(user_id=user_id).first()
     if reader is not None:
         reader_book_cards = ReadersBookCards.query.filter_by(reader_id=reader.id).all()
-        # if len(reader_book_cards) > 0:
-        list_of_books = []
+        books_deadlines = {}
         for item in reader_book_cards:
-            list_of_books.append(item.bookcard)
-        return render_template("account.html", reader=reader, books=list_of_books)
+            books_deadlines[item.bookcard] = item.deadline
+        return render_template("account.html", reader=reader, books_deadlines=books_deadlines)
     return render_template("account.html", reader=reader)
 
 
@@ -103,5 +102,6 @@ def books():
     return render_template('books.html', books=_books)
 
 
-# todo: ЛИЧНЫЙ КАБИНЕТ
-# todo: добавить ссылку на дом. страницу в админ-панель
+# TODO: добавить поле количества доступных книг
+# TODO: изменять количество книг в соответствии с кол-вом книг отданных и принятых
+# TODO: добавить дату возврата книги
