@@ -100,8 +100,3 @@ def register():
 def books():
     _books = BookCard.query.all()
     return render_template('books.html', books=_books)
-
-
-# TODO: добавить поле количества доступных книг
-# TODO: изменять количество книг в соответствии с кол-вом книг отданных и принятых
-# TODO: добавить дату возврата книги
