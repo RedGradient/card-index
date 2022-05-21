@@ -1,7 +1,7 @@
 function search() {
-    let search_input = document.getElementById("search");
-    let title = search_input.value
+    let search_input = document.getElementById("search-input");
+    let query = search_input.value
 
     let host = window.location.host
-    window.location = 'search?title=' + title
+    window.location = 'search?query=' + query
 }

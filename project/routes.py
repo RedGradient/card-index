@@ -17,10 +17,13 @@ def home():
 @app.route("/search")
 def search():
     if len(request.args) > 0:
-        title = request.args.get('title')
-        if title is not None:
-            _books = BookCard.query.filter_by(title=title)
-            return render_template('search_results.html', books=_books)
+        query = request.args.get('query')
+        found_books = []
+        for book in BookCard.query.all():
+            if (query in book.author or
+                    query in book.title):
+                found_books.append(book)
+        return render_template('search_results.html', books=found_books)
     else:
         return redirect("/")
 
